@@ -74,7 +74,7 @@ router.get('/:orderId', async (req, res) => {
   const { orderId } = req.params;
   const expand = req.query.expand;
 
-  let order = await Order.findByPk(orderId);
+  let order = await Order.unscoped().findByPk(orderId);
   if (!order) {
     return res.status(404).json({ error: 'Order not found' });
   }
